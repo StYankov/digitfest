@@ -2,7 +2,7 @@ const axios = require('axios').default;
 const cheerio = require('cheerio');
 
 async function getData(query) {
-    const resposne = await axios.get('https://www.allrecipes.com/search/?wt=salad');
+    const resposne = await axios.get(`https://www.allrecipes.com/search/?wt=${query}`);
     const recipes = parseData(resposne.data);
 
     return recipes;
