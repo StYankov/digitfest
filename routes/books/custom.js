@@ -2,8 +2,8 @@ const axios = require('axios').default;
 const cheerio = require('cheerio');
 
 module.exports = async function getBooks(query) {
-    const amazonResponse = await axios.get(`https://www.amazon.com/s?k=${query}&i=stripbooks-intl-ship&ref=nb_sb_noss`);
-    const booksAMillion = await axios.get(`https://www.booksamillion.com/search?filter=&id=8029253721490&query=${query}`);
+    const amazonResponse = await axios.get(`https://www.amazon.com/s?k=${encodeURI(query)}&i=stripbooks-intl-ship&ref=nb_sb_noss`);
+    const booksAMillion = await axios.get(`https://www.booksamillion.com/search?filter=&id=8029253721490&query=${encodeURI(query)}`);
 
     return [...parseAmazon(amazonResponse.data)].concat(parseBooksAMillion(booksAMillion.data));
 }
@@ -16,7 +16,7 @@ function parseAmazon(html) {
     books.each(function(i, el) {
         const name = $(this).find('.a-link-normal span').first().text();
         const image= $(this).find('.s-image').first().attr('src');
-        const url = $(this).find('.a-link-normal').first().attr('href');
+        const url = 'https://www.amazon.com' +  $(this).find('.a-link-normal').first().attr('href');
         const author = $(this).find('.a-section .a-row').first().text();
 
         response.push({

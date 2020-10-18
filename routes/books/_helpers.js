@@ -7,8 +7,8 @@ function parseManyBooksData(html) {
     const result = [];
     books.each(function(i, el) {
         const name = $(this).find('.field--name-field-title').first().text();
-        const url = 'https://manybooks.net/' + $(this).find('.field--name-field-title a').first().attr('href');
-        const image = $(this).find('img').first().attr('src');
+        const url = 'https://manybooks.net' + $(this).find('.field--name-field-title a').first().attr('href');
+        const image = 'https://manybooks.net' + $(this).find('img').first().attr('src');
 
         result.push({
             name,

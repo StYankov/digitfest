@@ -15,7 +15,7 @@ function getBooks(serach) {
         case 'horror':
             return horror;
         default:
-            return custom;
+            return () => custom(serach);
     }
 }
 

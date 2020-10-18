@@ -13,7 +13,6 @@ module.exports = getData;
 function parseData(html) {
     const $ = cheerio.load(html);
     const recipes = $('.fixed-recipe-card:not(.grid-ad)');
-
     const results = [];
 
     recipes.each(function(i, el) {
